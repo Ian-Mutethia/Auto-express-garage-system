@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Vehicle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+    <h2>Register Vehicle</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="model" class="form-label">Model</label>
+            <input type="text" class="form-control" id="model" name="model" required>
+        </div>
+        <div class="mb-3">
+            <label for="plate" class="form-label">Plate Number</label>
+            <input type="text" class="form-control" id="plate" name="plate" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment History</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+    <h2>Payment History</h2>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary mb-3">Back to Dashboard</a>
+    {% if payments %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Invoice ID</th>
+                    <th>Customer</th>
+                    <th>Amount (KES)</th>
+                    <th>Method</th>
+                    <th>Transaction ID</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payment in payments %}
+                    <tr>
+                        <td>{{ payment['id'] }}</td>
+                        <td>{{ payment['invoice_id'] }}</td>
+                        <td>{{ payment['customer'] }}</td>
+                        <td>KES {{ payment['amount'] | round(2) }}</td>
+                        <td>{{ payment['method'] }}</td>
+                        <td>{{ payment['transaction_id'] or 'N/A' }}</td>
+                        <td>{{ payment['timestamp'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No payments recorded.</p>
+    {% endif %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

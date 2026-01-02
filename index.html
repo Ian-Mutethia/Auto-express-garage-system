@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AutoFix Pro - Garage Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .hero-section {
+            background: url('https://images.pexels.com/photos/4489749/pexels-photo-4489749.jpeg') no-repeat center center;
+            background-size: cover;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .hero-section p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+        .logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+        }
+        .footer-img {
+            background: url('https://images.pexels.com/photos/3786092/pexels-photo-3786092.jpeg') no-repeat center bottom;
+            background-size: cover;
+            height: 150px;
+            margin-top: 40px;
+        }
+        .btn-lg {
+            padding: 12px 24px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="container">
+            <img src="https://img.icons8.com/color/150/car-repair.png" alt="AutoFix Pro Logo" class="logo">
+            <h1>AutoFix Pro</h1>
+            <p>Your trusted solution for seamless vehicle repairs and garage management</p>
+            <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg m-2"><i class="fas fa-user-plus"></i> Register</a>
+            <a href="{{ url_for('login') }}" class="btn btn-success btn-lg m-2"><i class="fas fa-sign-in-alt"></i> Login</a>
+        </div>
+    </div>
+    <div class="container mt-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <div class="footer-img"></div>
+</body>
+</html>
